@@ -105,9 +105,15 @@ const crashChart = new Chart(crashCtx, {
 });
 
 
-        // GRAPHIQUE 2.
+// GRAPHIQUE 2.
 const stockCtx = document.getElementById('stockChart').getContext('2d');
 
+const stockDatasets = {
+    "2000-04-19": [37.25, 40.06, 37.88, 39.5, 39.94],
+    "2008-02-21": [85.10, 83.45, 81.20, 82.88, 84.55],
+    "2013-07-06": [105.50, 104.70, 107.30, 108.90, 109.25],
+    "2019-03-10": [422.54, 400.01, 372.28, 375.50, 384.53]
+};
 
 function calculatePercentageChanges(data) {
     let percentages = [];
@@ -118,10 +124,12 @@ function calculatePercentageChanges(data) {
     return percentages;
 }
 
-const stockData = [37.25, 40.06, 37.88, 39.5, 39.94];
-const percentageChanges = calculatePercentageChanges(stockData);
+// Données initiales
+let stockData = stockDatasets["2000-04-19"];
+let percentageChanges = calculatePercentageChanges(stockData);
 
-new Chart(stockCtx, {
+// Créer le graphique
+const stockChart = new Chart(stockCtx, {
     type: 'line',
     data: {
         labels: ['Jour 0', 'Jour 1', 'Jour 2', 'Jour 3', 'Jour 4'],
@@ -141,7 +149,10 @@ new Chart(stockCtx, {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { display: true, position: 'top' },
+            legend: { 
+                display: true, 
+                position: 'top' 
+            },
             tooltip: {
                 callbacks: {
                     label: function(context) {
@@ -173,9 +184,57 @@ new Chart(stockCtx, {
         scales: {
             y: {
                 beginAtZero: false,
-                title: { display: true, text: 'Cours ($)', font: { weight: 'bold' } }
+                title: { 
+                    display: true, 
+                    text: 'Cours ($)', 
+                    font: { weight: 'bold' } 
+                }
             }
         }
+    }
+});
+
+// Gestion du changement de période
+document.getElementById('weekSelect').addEventListener('change', function(e) {
+    const selectedDate = e.target.value;
+    stockData = stockDatasets[selectedDate];
+    percentageChanges = calculatePercentageChanges(stockData);
+    
+    // Mettre à jour le graphique
+    stockChart.data.datasets[0].data = stockData;
+    stockChart.update();
+    
+    // Mettre à jour les statistiques
+    const initialValue = stockData[0];
+    const finalValue = stockData[stockData.length - 1];
+    const evolution = ((finalValue - initialValue) / initialValue * 100).toFixed(2);
+    
+    // Récupérer les cartes de statistiques - on remonte depuis le canvas pour trouver la bonne section
+    const chartSection = document.getElementById('stockChart').closest('.section');
+    const statCards = chartSection.querySelectorAll('.stats-grid .stat-card');
+    
+    // Mettre à jour cours initial (première carte)
+    statCards[0].querySelector('.stat-value').textContent = `$${initialValue.toFixed(2)}`;
+    
+    // Mettre à jour cours final (deuxième carte)
+    statCards[1].querySelector('.stat-value').textContent = `$${finalValue.toFixed(2)}`;
+    
+    // Mettre à jour évolution (troisième carte)
+    const evolutionCard = statCards[2];
+    const evolutionValue = evolutionCard.querySelector('.stat-value');
+    evolutionValue.textContent = `${evolution > 0 ? '+' : ''}${evolution}%`;
+    
+    // Changer la couleur selon l'évolution
+    if (evolution < 0) {
+        evolutionCard.classList.remove('bg-green');
+        evolutionCard.classList.add('bg-red');
+        evolutionValue.classList.remove('text-green');
+        evolutionValue.classList.add('text-red');
+    } else {
+        evolutionCard.classList.remove('bg-red');
+        evolutionCard.classList.add('bg-green');
+        evolutionValue.classList.remove('text-red');
+        evolutionValue.classList.add('text-green');
     }
 });
 
