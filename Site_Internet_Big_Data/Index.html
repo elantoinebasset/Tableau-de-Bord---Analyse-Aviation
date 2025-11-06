@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Aviation</title>
+    <link rel="stylesheet" href="/Style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tableau de Bord - Analyse Aviation</h1>
+            <p>Boeing vs Airbus : Comparaison presque complète</p>
+            <br><br><br><br>
+            <h2>Les accidents aériens sont des événements tragiques qui attirent l’attention des médias et du public. Mais au-delà de l’impact humain, ces accidents ont-ils un effet mesurable sur les performances financières des géants de l’aéronautique, Boeing et Airbus ? Nous allons analyser l’influence des crashes sur leurs chiffres d’affaires, bénéfices et cours boursiers, en nous appuyant sur des données historiques et des études de cas.</h2>
+        </div>
+
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <h2 class="section-title">1. Répartition des Crashes et Erreurs</h2>
+            <div class="chart-container"><canvas id="crashChart"></canvas></div>
+            <div class="stats-grid">
+                <div class="stat-card bg-blue"><div class="stat-value text-blue">314</div><div class="stat-label">Crashes Boeing</div></div>
+                <div class="stat-card bg-red"><div class="stat-value text-red">91</div><div class="stat-label">Crashes Airbus</div></div>
+                <div class="stat-card bg-gray"><div class="stat-value text-gray">405</div><div class="stat-label">Total Crashes</div></div>
+            </div>
+            <button class="toggle-btn" onclick="toggleText('analysis1')">Afficher / Masquer l’analyse</button>
+            <div class="analysis" id="analysis1">
+                <strong>a. Boeing :</strong> a.
+
+    Entre 1970 et 2025, Boeing enregistre 314 crashs, soit plus de trois fois le nombre d’accidents d’Airbus sur la même période.
+    La majorité de ces incidents sont liés à des erreurs humaines (219 cas), souvent aggravées par des failles de conception. L’exemple le plus marquant reste celui du 737 MAX, dont le système MCAS a été mis en cause dans plusieurs tragédies.
+    À cela s’ajoutent 134 erreurs techniques, révélant des problèmes récurrents dans certains systèmes de contrôle automatisé.  
+                <br><br><strong>b. Airbus :</strong> Airbus comptabilise 91 crashs sur la même période. Une proportion bien moindre, mais qui s’explique aussi par une entrée plus tardive sur le marché, dans les années 1980.
+    Les erreurs techniques (52 cas) demeurent la principale cause identifiée. L’accident du vol Air France 447 en 2009, lié à un dysfonctionnement des sondes Pitot, a d’ailleurs conduit à une révision globale des protocoles de sécurité aérienne.  
+                <br><br><strong>c. Impact économique :</strong> Chez Boeing, la succession d’accidents a fortement entamé la réputation du constructeur. Les annulations massives de commandes du 737 MAX et les indemnisations, estimées à plus de 20 milliards de dollars, ont marqué un tournant pour l’entreprise.
+    Airbus, de son côté, a mieux résisté aux crises grâce à une gestion plus rigoureuse et une diversification de ses activités (aéronautique civile, défense, hélicoptères), limitant ainsi l’impact économique de ses rares accidents.
+            </div>
+        </div>
+
+
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <h2 class="section-title">2. Impact d'un Crash sur le Cours Boeing</h2>
+            <p class="subtitle">Crash du 19 avril 2000</p>
+            <div class="chart-container"><canvas id="stockChart"></canvas></div>
+            <div class="stats-grid">
+                <div class="stat-card bg-blue"><div class="stat-value text-blue">$37.25</div><div class="stat-label">Cours initial</div></div>
+                <div class="stat-card bg-purple"><div class="stat-value text-purple">$39.94</div><div class="stat-label">Cours final</div></div>
+                <div class="stat-card bg-green"><div class="stat-value text-green">+7.22%</div><div class="stat-label">Évolution</div></div>
+            </div>
+            <button class="toggle-btn" onclick="toggleText('analysis2')">Afficher / Masquer l’analyse</button>
+            <div class="analysis" id="analysis2">
+                <strong>a. Contexte :</strong> Le 19 avril 2000, un Boeing 737 est impliqué dans un accident (cas fictif à visée analytique).
+Avant le drame, l’action Boeing s’élevait à 37,25 $.
+La réaction des marchés ne s’est pas fait attendre :
+
+Jour 1 : le titre grimpe à 40,06 $, porté par la spéculation sur une réaction rapide de l’entreprise.
+
+Jour 2 : la tendance s’inverse, l’action retombe à 37,88 $, les investisseurs anticipant les coûts juridiques et techniques.
+
+Jour 4 : stabilisation autour de 39,94 $ (+7,22 %), preuve d’une résilience boursière notable malgré le choc initial.  
+                <br>* Jour 1 : +7,5 %, spéculation.  
+                <br>* Jour 2 : -5,4 %, inquiétudes.  
+                <br>* Jour 4 : +7,22 % final.  
+                <br><br><strong>b. Analyse :</strong>  Les accidents aériens entraînent une forte volatilité à court terme, mais Boeing parvient souvent à endiguer la chute grâce à une communication réactive et à l’annonce rapide de mesures correctives.
+En comparaison, après l’accident du vol AF447 en 2009, le cours d’Airbus n’avait reculé que de 3 %, contre 10 à 15 % pour Boeing lors d’événements similaires.
+            </div>
+        </div>
+
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <h2 class="section-title">3. Aides de l'État à Boeing (1994-2015)</h2>
+            <div class="chart-container"><canvas id="aidesChart"></canvas></div>
+            <button class="toggle-btn" onclick="toggleText('analysis3')">Afficher / Masquer l’analyse</button>
+            <div class="analysis" id="analysis3">
+                <strong>a. Évolution des subventions :</strong>  
+<strong>1994-2000 :</strong>  Aides limitées, inférieures à 500 millions de dollars par an. <br>
+
+<strong>2001-2010 :</strong>  Explosion du soutien public après les attentats du 11 septembre 2001, atteignant 3,6 milliards en 2003. <br>
+
+<strong>2011-2015 :</strong> Montée en puissance des aides, dépassant 13 milliards par an, avec un pic à 14,2 milliards en 2014. <br>
+                <br><strong>b. Raisons :</strong> Plusieurs facteurs expliquent ce soutien massif :
+
+<br> <strong>Maintien de l’emploi :</strong> Boeing représente un pilier de l’industrie américaine, avec plus de 150 000 salariés.
+
+<br> <strong>Concurrence internationale :</strong> L’Europe soutient également Airbus via des aides publiques, poussant Washington à répliquer.
+
+<br><strong>Crises successives :</strong> Après le 11 septembre et les déboires du 737, Boeing a bénéficié de plans de relance ciblés pour éviter l’effondrement du secteur aéronautique.  
+                <br><br><strong>c. Impact :</strong> Sans ce soutien, Boeing aurait probablement connu de graves difficultés financières après 2001, la chute des commandes ayant été brutale.
+Mais ces aides ont aussi alimenté les tensions commerciales avec l’Union européenne : l’UE a saisi l’OMC, dénonçant une distorsion de concurrence entre les deux géants de l’aéronautique.
+            </div>
+        </div>
+
+
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <h2 class="section-title">4. Évolution Cumulative des Crashes (1970-2025)</h2>
+            <div class="chart-container"><canvas id="cumulativeChart"></canvas></div>
+            <button class="toggle-btn" onclick="toggleText('analysis4')">Afficher / Masquer l’analyse</button>
+            <div class="analysis" id="analysis4">
+                <strong>a. Données clés :</strong>  
+                <br><strong>Boeing :</strong> Environ 200 crashs cumulés en 2025. Un pic dans les années 2000, période marquée par les attentats du 11 septembre et plusieurs problèmes techniques sur les 737.  
+                <br><strong>Airbus :</strong> 144 crashs, hausse 2000-2020.  
+                <br><br><strong>b. Corrélation :</strong> <strong>Pour Boeing</strong>, les pics d’accidents (notamment en 2001 et 2018) coïncident avec des baisses marquées du chiffre d’affaires :
+
+-20 % en 2001, après la crise post-11 septembre.
+
+-30 % en 2020, dans le sillage de la pandémie et des conséquences du 737 MAX.
+Le cours boursier a également subi des chutes spectaculaires, jusqu’à -40 % après 2019.
+
+<br><strong>Chez Airbus</strong>, la tendance est différente : malgré une hausse du nombre d’accidents, le chiffre d’affaires a doublé entre 2000 et 2020, tandis que le cours boursier est resté globalement stable. <br> <strong>Cette stabilité</strong> s’explique en grande partie par une meilleure gestion de crise et une communication maîtrisée.
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 - Analyse comparative Boeing vs Airbus - Créer par Antoine Basset</p>
+            <p><strong>Source</strong> </p>
+            <br>
+<button onclick="window.open('https://finance.yahoo.com/quote/BA')" class="mon-bouton">Yahoo.Finance.BA</button>
+<button onclick="window.open('https://www.researchgate.net/publication/338241503_A_review_of_accidents_incidents_on_Boeing_and_Airbus_commercial_aircrafts_avionics-related_system_in_two_decades_1996-2015')" class="mon-bouton">Review of accidents</button>
+<button onclick="window.open('https://www.1001crash.com/index-page-plane_database-lg-2-aviation-boeing-plane-accident-aeronautical-history.html')" class="mon-bouton">CrashAviation</button>
+<button onclick="window.open('https://www.visualcapitalist.com/which-u-s-companies-receive-the-most-government-subsidies')" class="mon-bouton">Government Subsidies</button>
+        </div>
+    </div>
+
+
+    <script src="/Script.js"></script>
+</body>
+</html>
