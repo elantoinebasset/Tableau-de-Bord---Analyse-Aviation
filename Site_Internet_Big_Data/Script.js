@@ -105,7 +105,7 @@ const crashChart = new Chart(crashCtx, {
 });
 
 
-        // GRAPHIQUE 2
+        // GRAPHIQUE 2.
 const stockCtx = document.getElementById('stockChart').getContext('2d');
 
 
