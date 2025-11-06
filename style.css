@@ -83,3 +83,16 @@
     border: none;
     cursor: pointer;
 }
+
+.mon-bouton2 {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #10B981;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
